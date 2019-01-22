@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">VerCodeLayout</string>
+
+    <string name="exception_max_count_is_zero">max count can not be 0</string>
+    <string name="exception_no_max_length">editText not set maxLength? go home you are drunk</string>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="VerCodeEditText">
+        <attr name="vcCount" format="integer" />
+        <attr name="vcMaxLength" format="integer" />
+        <attr name="vcNormalBackground" format="reference" />
+        <attr name="vcSelectedBackground" format="reference" />
+        <attr name="vcEtWidth" format="dimension" />
+        <attr name="vcEtHeight" format="dimension" />
+    </declare-styleable>
+</resources>

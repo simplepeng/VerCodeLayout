@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.simple.vclayout.VerCodeLayout
+            android:id="@+id/vc_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/sr_et_bg_1"
+                android:gravity="center"
+                android:maxLength="1"
+                android:maxLines="1"
+                android:textSize="20sp" />
+
+            <EditText
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/sr_et_bg_1"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1"
+                android:maxLines="1"
+                android:textSize="20sp" />
+
+            <EditText
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/sr_et_bg_1"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1"
+                android:maxLines="1"
+                android:textSize="20sp" />
+
+            <EditText
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/sr_et_bg_1"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1"
+                android:maxLines="1"
+                android:textSize="20sp" />
+
+        </com.simple.vclayout.VerCodeLayout>
+
+
+        <com.simple.vclayout.VerCodeEditText
+            android:id="@+id/vcEditText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:vcCount="6"
+            app:vcMaxLength="1" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
