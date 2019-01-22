@@ -3,9 +3,13 @@
     <declare-styleable name="VerCodeEditText">
         <attr name="vcCount" format="integer" />
         <attr name="vcMaxLength" format="integer" />
-        <attr name="vcNormalBackground" format="reference" />
-        <attr name="vcSelectedBackground" format="reference" />
+        <attr name="vcBackground" format="reference" />
         <attr name="vcEtWidth" format="dimension" />
         <attr name="vcEtHeight" format="dimension" />
+        <attr name="vcMargin" format="dimension" />
+        <attr name="vcMarginLeft" format="dimension" />
+        <attr name="vcMarginTop" format="dimension" />
+        <attr name="vcMarginRight" format="dimension" />
+        <attr name="vcMarginBottom" format="dimension" />
     </declare-styleable>
 </resources>
