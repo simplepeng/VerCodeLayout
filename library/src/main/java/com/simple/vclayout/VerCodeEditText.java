@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.ColorInt;
 import android.text.InputFilter;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -25,7 +27,10 @@ public class VerCodeEditText extends VerCodeLayout {
 
     private int mWidth;
     private int mHeight;
+
     private float mTextSize;
+    @ColorInt
+    private int mTextColor;
 
     private int mMargin;
     private int mMarginLeft;
@@ -73,11 +78,11 @@ public class VerCodeEditText extends VerCodeLayout {
         super.onFinishInflate();
     }
 
-    private void createEditTexts(int count, int maxLength) {
+    private void createEditTexts(int count, final int maxLength) {
         for (int i = 0; i < count; i++) {
-            EditText editText = new EditText(getContext());
+            final EditText editText = new EditText(getContext());
             editText.setMaxLines(1);
-            //
+            //textSize
 //            if (mTextSize != 0) {
 //            editText.setTextSize(20);
 //            }
@@ -112,9 +117,21 @@ public class VerCodeEditText extends VerCodeLayout {
                     v.setBackgroundDrawable(d);
                 }
             });
-            if (mNormalBackground != null){
+            if (mNormalBackground != null) {
                 editText.setBackgroundDrawable(mNormalBackground);
             }
+            //
+            editText.setOnKeyListener(new OnKeyListener() {
+                @Override
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    if (editText.getText().length() == maxLength && keyCode != KeyEvent.KEYCODE_DEL){
+                        focusNext(editText);
+                    }else if (editText.getText().length() == 0 && keyCode == KeyEvent.KEYCODE_DEL){
+                        focusLast(editText);
+                    }
+                    return false;
+                }
+            });
             //padding
 //            editText.setPadding();
             //addView

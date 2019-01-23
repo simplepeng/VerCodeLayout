@@ -111,7 +111,7 @@ public class VerCodeLayout extends LinearLayout {
         }
     }
 
-    private void focusNext(EditText et) {
+    protected void focusNext(EditText et) {
         final int index = mEditTexts.indexOf(et);
         if (index < mEditTexts.size() - 1) {
             EditText nextEt = mEditTexts.get(index + 1);
@@ -128,7 +128,7 @@ public class VerCodeLayout extends LinearLayout {
         }
     }
 
-    private void focusLast(EditText et) {
+    protected void focusLast(EditText et) {
         final int index = mEditTexts.indexOf(et);
         if (index != 0) {
             EditText lastEt = mEditTexts.get(index - 1);
