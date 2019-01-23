@@ -16,7 +16,9 @@ import java.util.List;
 
 public class VerCodeLayout extends LinearLayout {
 
-    private List<EditText> mEditTexts;
+    public static final String TAG = "VerCodeLayout";
+
+    protected List<EditText> mEditTexts;
     private OnInputFinishListener mOnInputFinishListener;
 
     public VerCodeLayout(Context context) {
@@ -94,6 +96,7 @@ public class VerCodeLayout extends LinearLayout {
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
+            Utils.log("onTextChanged == " + count);
             if (maxCount == 0) {
                 throw new IllegalArgumentException(getResources().getString(R.string.exception_max_count_is_zero));
             }

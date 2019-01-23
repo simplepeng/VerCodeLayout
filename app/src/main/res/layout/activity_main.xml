@@ -70,6 +70,6 @@
             android:layout_height="wrap_content"
             app:vcBackground="@drawable/sr_et_bg_accent"
             app:vcCount="6"
-            app:vcMaxLength="1" />
+            app:vcMargin="10dp" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
