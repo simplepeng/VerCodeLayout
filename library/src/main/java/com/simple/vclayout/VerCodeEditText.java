@@ -20,7 +20,8 @@ public class VerCodeEditText extends VerCodeLayout {
 
     private int mCount;
     private int mMaxLength;
-    private Drawable mBackground;
+    private Drawable mNormalBackground;
+    private Drawable mFocusedBackground;
 
     private int mWidth;
     private int mHeight;
@@ -48,7 +49,9 @@ public class VerCodeEditText extends VerCodeLayout {
 
         mCount = ta.getInt(R.styleable.VerCodeEditText_vcCount, 0);
         mMaxLength = ta.getInt(R.styleable.VerCodeEditText_vcMaxLength, 1);
-        mBackground = ta.getDrawable(R.styleable.VerCodeEditText_vcBackground);
+//        mBackground = ta.getDrawable(R.styleable.VerCodeEditText_vcBackground);
+        mNormalBackground = ta.getDrawable(R.styleable.VerCodeEditText_vcNormalBackground);
+        mFocusedBackground = ta.getDrawable(R.styleable.VerCodeEditText_vcFocusedBackground);
 
         mTextSize = ta.getDimension(R.styleable.VerCodeEditText_vcTextSize, 0f);
         mWidth = (int) ta.getDimension(R.styleable.VerCodeEditText_vcEtWidth, 0f);
@@ -71,10 +74,9 @@ public class VerCodeEditText extends VerCodeLayout {
     }
 
     private void createEditTexts(int count, int maxLength) {
-        EditText editText;
         for (int i = 0; i < count; i++) {
-
-            editText = new EditText(getContext());
+            EditText editText = new EditText(getContext());
+            editText.setMaxLines(1);
             //
 //            if (mTextSize != 0) {
 //            editText.setTextSize(20);
@@ -102,24 +104,21 @@ public class VerCodeEditText extends VerCodeLayout {
                 params.height = mHeight;
             }
             //background
-            if (mBackground != null) {
-                editText.setOnFocusChangeListener(new OnFocusChangeListener() {
-                    @Override
-                    public void onFocusChange(View v, boolean hasFocus) {
-                        Utils.log("onFocusChange ===== " + hasFocus);
-                    }
-                });
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                    editText.setBackground(mBackground);
-                } else {
-                    editText.setBackgroundDrawable(mBackground);
+            editText.setOnFocusChangeListener(new OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    Drawable d = hasFocus ? mFocusedBackground : mNormalBackground;
+                    if (d == null) return;
+                    v.setBackgroundDrawable(d);
                 }
+            });
+            if (mNormalBackground != null){
+                editText.setBackgroundDrawable(mNormalBackground);
             }
             //padding
 //            editText.setPadding();
             //addView
-
-            this.addView(editText, params);
+            this.addView(editText, i, params);
         }
     }
 }

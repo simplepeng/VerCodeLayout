@@ -3,7 +3,8 @@
     <declare-styleable name="VerCodeEditText">
         <attr name="vcCount" format="integer" />
         <attr name="vcMaxLength" format="integer" />
-        <attr name="vcBackground" format="reference" />
+        <attr name="vcNormalBackground" format="reference" />
+        <attr name="vcFocusedBackground" format="reference" />
 
         <attr name="vcEtWidth" format="dimension" />
         <attr name="vcEtHeight" format="dimension" />

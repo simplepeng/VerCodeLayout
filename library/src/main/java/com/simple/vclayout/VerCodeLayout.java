@@ -91,25 +91,23 @@ public class VerCodeLayout extends LinearLayout {
 
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
         }
 
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-            Utils.log("onTextChanged == " + count);
-            if (maxCount == 0) {
-                throw new IllegalArgumentException(getResources().getString(R.string.exception_max_count_is_zero));
-            }
-            if (count == maxCount) {
-                focusNext(innerEditText);
-            } else if (count == 0) {
-                focusLast(innerEditText);
-            }
         }
 
         @Override
         public void afterTextChanged(Editable s) {
-
+            final int count = s.length();
+            if (maxCount == 0) {
+                throw new IllegalArgumentException(getResources().getString(R.string.exception_max_count_is_zero));
+            }
+            if (count >= maxCount) {
+                focusNext(innerEditText);
+            } else if (count == 0) {
+                focusLast(innerEditText);
+            }
         }
     }
 
