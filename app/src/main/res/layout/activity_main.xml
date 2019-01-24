@@ -17,7 +17,6 @@
         <com.simple.vclayout.VerCodeEditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             app:vcCount="5" />
 
         <Button
@@ -25,6 +24,24 @@
             android:layout_height="wrap_content"
             android:onClick="clear"
             android:text="clear" />
+
+        <com.simple.vclayout.VerCodeEditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:vcCount="6"
+            app:vcFocusedBackground="@drawable/sp_focused_one"
+            app:vcMargin="5dp"
+            app:vcNormalBackground="@drawable/sp_normal_one"
+            app:vcTextSize="20sp" />
+
+        <com.simple.vclayout.VerCodeEditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:vcCount="6"
+            app:vcFocusedBackground="@drawable/sp_focused_two"
+            app:vcMargin="5dp"
+            app:vcNormalBackground="@drawable/sp_normal_two"
+            app:vcTextSize="20sp" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
