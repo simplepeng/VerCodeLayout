@@ -70,19 +70,25 @@ public class VerCodeEditText extends VerCodeLayout {
 
         mNormalBackground = ta.getDrawable(R.styleable.VerCodeEditText_vcNormalBackground);
         mFocusedBackground = ta.getDrawable(R.styleable.VerCodeEditText_vcFocusedBackground);
-
+        //
         mTextSize = ta.getDimensionPixelSize(R.styleable.VerCodeEditText_vcTextSize, 0);
         mTextColor = ta.getColor(R.styleable.VerCodeEditText_vcTextColor, Color.BLACK);
         mTextCursorDrawable = ta.getResourceId(R.styleable.VerCodeEditText_vcTextCursorDrawable, -1);
-
+        //
         mWidth = (int) ta.getDimension(R.styleable.VerCodeEditText_vcEtWidth, 0f);
         mHeight = (int) ta.getDimension(R.styleable.VerCodeEditText_vcEtHeight, 0f);
-
+        //
         mMargin = (int) ta.getDimension(R.styleable.VerCodeEditText_vcMargin, 0);
         mMarginLeft = (int) ta.getDimension(R.styleable.VerCodeEditText_vcMarginLeft, 0);
         mMarginTop = (int) ta.getDimension(R.styleable.VerCodeEditText_vcMarginTop, 0);
         mMarginRight = (int) ta.getDimension(R.styleable.VerCodeEditText_vcMarginRight, 0);
         mMarginBottom = (int) ta.getDimension(R.styleable.VerCodeEditText_vcMarginBottom, 0);
+        //
+        mPadding = (int) ta.getDimension(R.styleable.VerCodeEditText_vcPadding, -1);
+        mPaddingLeft = (int) ta.getDimension(R.styleable.VerCodeEditText_vcPaddingLeft, 0);
+        mPaddingTop = (int) ta.getDimension(R.styleable.VerCodeEditText_vcPaddingTop, 0);
+        mPaddingRight = (int) ta.getDimension(R.styleable.VerCodeEditText_vcPaddingRight, 0);
+        mPaddingBottom = (int) ta.getDimension(R.styleable.VerCodeEditText_vcPaddingBottom, 0);
 
         ta.recycle();
 
@@ -139,7 +145,11 @@ public class VerCodeEditText extends VerCodeLayout {
     }
 
     private void setPadding(EditText editText) {
-        editText.setPadding(0, 0, 0, 0);
+        if (mPadding != -1) {
+            editText.setPadding(mPadding, mPadding, mPadding, mPadding);
+        } else {
+            editText.setPadding(mPaddingLeft, mPaddingTop, mPaddingRight, mPaddingBottom);
+        }
     }
 
     private MarginLayoutParams getMarginLayoutParams() {
