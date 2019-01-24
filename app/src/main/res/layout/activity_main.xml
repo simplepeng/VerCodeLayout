@@ -15,73 +15,16 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.simple.vclayout.VerCodeEditText
-            android:id="@+id/vcEditText1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:vcCount="6"
-            app:vcFocusedBackground="@drawable/sp_focused_one"
-            app:vcMargin="10dp"
-            app:vcNormalBackground="@drawable/sp_norma_one"
-            app:vcTextColor="@color/colorAccent"
-            app:vcTextSize="20sp" />
+
+            app:vcCount="5" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="clear"
             android:text="clear" />
-
-
-        <com.simple.vclayout.VerCodeLayout
-            android:id="@+id/vc_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/sr_et_bg_accent"
-                android:gravity="center"
-                android:maxLength="1"
-                android:maxLines="1"
-                android:textSize="20sp" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/sr_et_bg_accent"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="1"
-                android:maxLines="1"
-                android:textSize="20sp" />
-
-            <EditText
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/sr_et_bg_accent"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="1"
-                android:maxLines="1"
-                android:textSize="20sp" />
-
-            <EditText
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/sr_et_bg_accent"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="1"
-                android:maxLines="1"
-                android:textSize="20sp" />
-
-        </com.simple.vclayout.VerCodeLayout>
-
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

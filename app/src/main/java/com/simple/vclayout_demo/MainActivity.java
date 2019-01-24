@@ -18,27 +18,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        vc_layout = findViewById(R.id.vc_layout);
-        vc_layout.setOnCompleteListener(new VerCodeLayout.OnCompleteListener() {
-            @Override
-            public void onComplete(Editable editable, String code) {
-//                code = editable.toString();
-                showToast(code);
-            }
-        });
-
-        VerCodeEditText vcEt1 = findViewById(R.id.vcEditText1);
-        vcEt1.setOnCompleteListener(new VerCodeLayout.OnCompleteListener() {
-            @Override
-            public void onComplete(Editable editable, String code) {
-                showToast(code);
-            }
-        });
+//        vc_layout = findViewById(R.id.vc_layout);
+//        vc_layout.setOnCompleteListener(new VerCodeLayout.OnCompleteListener() {
+//            @Override
+//            public void onComplete(Editable editable, String code) {
+////                code = editable.toString();
+//                showToast(code);
+//            }
+//        });
+//
+//        VerCodeEditText vcEt1 = findViewById(R.id.vcEditText1);
+//        vcEt1.setOnCompleteListener(new VerCodeLayout.OnCompleteListener() {
+//            @Override
+//            public void onComplete(Editable editable, String code) {
+//                showToast(code);
+//            }
+//        });
     }
 
     public void clear(View view) {
-        VerCodeEditText vcEt = findViewById(R.id.vcEditText1);
-        vcEt.clear();
+//        VerCodeEditText vcEt = findViewById(R.id.vcEditText1);
+//        vcEt.clear();
     }
 
     private void showToast(CharSequence text) {

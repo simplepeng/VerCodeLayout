@@ -97,7 +97,7 @@ public class VerCodeLayout extends LinearLayout {
         public void afterTextChanged(Editable s) {
             final int count = s.length();
             if (maxLength == 0) {
-                throw new IllegalArgumentException(getResources().getString(R.string.exception_max_count_is_zero));
+                throw new IllegalArgumentException(getResources().getString(R.string.exception_no_max_length));
             }
             if (count >= maxLength) {
                 focusNext(innerEditText);

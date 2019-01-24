@@ -1,7 +1,6 @@
 package com.simple.vclayout;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.InputFilter;
 import android.util.Log;

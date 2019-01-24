@@ -3,6 +3,7 @@ package com.simple.vclayout;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.text.InputFilter;
@@ -92,12 +93,7 @@ public class VerCodeEditText extends VerCodeLayout {
 
         ta.recycle();
 
-    }
-
-    @Override
-    protected void onFinishInflate() {
         createEditTexts();
-        super.onFinishInflate();
     }
 
     private void createEditTexts() {
@@ -115,7 +111,7 @@ public class VerCodeEditText extends VerCodeLayout {
             //padding
             setPadding(editText);
             //addView
-            this.addView(editText, i, params);
+            this.addView(editText, params);
         }
     }
 
@@ -125,7 +121,9 @@ public class VerCodeEditText extends VerCodeLayout {
             editText.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize);
         }
         editText.setTextColor(mTextColor);
-        Utils.setTextCursorDrawable(editText, mTextCursorDrawable);
+        if (mTextCursorDrawable != -1) {
+            Utils.setTextCursorDrawable(editText, mTextCursorDrawable);
+        }
         editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(mMaxLength)});
         editText.setGravity(Gravity.CENTER);
     }
@@ -148,7 +146,14 @@ public class VerCodeEditText extends VerCodeLayout {
         if (mPadding != -1) {
             editText.setPadding(mPadding, mPadding, mPadding, mPadding);
         } else {
-            editText.setPadding(mPaddingLeft, mPaddingTop, mPaddingRight, mPaddingBottom);
+            if (editText.getBackground() != null) {
+                Drawable d = editText.getBackground();
+                Rect r = new Rect();
+                d.getPadding(r);
+                editText.setPadding(r.left, r.top, r.right, r.bottom);
+            } else {
+                editText.setPadding(mPaddingLeft, mPaddingTop, mPaddingRight, mPaddingBottom);
+            }
         }
     }
 
