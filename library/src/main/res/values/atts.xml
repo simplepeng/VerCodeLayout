@@ -3,18 +3,27 @@
     <declare-styleable name="VerCodeEditText">
         <attr name="vcCount" format="integer" />
         <attr name="vcMaxLength" format="integer" />
+        <!---->
         <attr name="vcNormalBackground" format="reference" />
         <attr name="vcFocusedBackground" format="reference" />
-
+        <!---->
         <attr name="vcEtWidth" format="dimension" />
         <attr name="vcEtHeight" format="dimension" />
-
+        <!---->
         <attr name="vcMargin" format="dimension" />
         <attr name="vcMarginLeft" format="dimension" />
         <attr name="vcMarginTop" format="dimension" />
         <attr name="vcMarginRight" format="dimension" />
         <attr name="vcMarginBottom" format="dimension" />
-
-        <attr name="vcTextSize" format="dimension"/>
+        <!---->
+        <attr name="vcPadding" format="dimension" />
+        <attr name="vcPaddingLeft" format="dimension" />
+        <attr name="vcPaddingTop" format="dimension" />
+        <attr name="vcPaddingRight" format="dimension" />
+        <attr name="vcPaddingBottom" format="dimension" />
+        <!---->
+        <attr name="vcTextSize" format="dimension" />
+        <attr name="vcTextColor" format="color" />
+        <attr name="vcTextCursorDrawable" format="reference" />
     </declare-styleable>
 </resources>

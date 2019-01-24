@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -52,41 +53,39 @@ public class VerCodeLayout extends LinearLayout {
 
     private void setupEditText(EditText editText) {
         mEditTexts.add(editText);
+        editText.setOnKeyListener(new InnerKeyListener(editText));
         editText.addTextChangedListener(new InnerTextWatcher(editText));
+    }
+
+    class InnerKeyListener implements OnKeyListener {
+
+        EditText innerEditText;
+        int maxLength;
+
+        public InnerKeyListener(EditText editText) {
+            this.innerEditText = editText;
+            this.maxLength = Utils.getMaxLength(editText);
+        }
+
+        @Override
+        public boolean onKey(View v, int keyCode, KeyEvent event) {
+            if (innerEditText.getText().length() == maxLength && keyCode != KeyEvent.KEYCODE_DEL) {
+                focusNext(innerEditText);
+            } else if (innerEditText.getText().length() == 0 && keyCode == KeyEvent.KEYCODE_DEL) {
+                focusLast(innerEditText);
+            }
+            return false;
+        }
     }
 
     class InnerTextWatcher implements TextWatcher {
 
         EditText innerEditText;
-        int maxCount;
+        int maxLength;
 
         public InnerTextWatcher(EditText editText) {
             innerEditText = editText;
-            InputFilter[] filters = innerEditText.getFilters();
-            if (filters == null || filters.length == 0) {
-                throw new IllegalArgumentException(getResources().getString(R.string.exception_no_max_length));
-            }
-            for (InputFilter filter : filters) {
-                if (filter instanceof InputFilter.LengthFilter) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        InputFilter.LengthFilter lengthFilter = ((InputFilter.LengthFilter) filter);
-                        maxCount = lengthFilter.getMax();
-                    } else {
-                        //below 21
-                        try {
-                            Field field = filter.getClass().getDeclaredField("mMax");
-                            field.setAccessible(true);
-
-                            if (field.isAccessible()) {
-                                maxCount = field.getInt(filter);
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }
-            }
+            this.maxLength = Utils.getMaxLength(editText);
         }
 
         @Override
@@ -100,16 +99,18 @@ public class VerCodeLayout extends LinearLayout {
         @Override
         public void afterTextChanged(Editable s) {
             final int count = s.length();
-            if (maxCount == 0) {
+            if (maxLength == 0) {
                 throw new IllegalArgumentException(getResources().getString(R.string.exception_max_count_is_zero));
             }
-            if (count >= maxCount) {
+            if (count >= maxLength) {
                 focusNext(innerEditText);
-            } else if (count == 0) {
-                focusLast(innerEditText);
             }
+//            else if (count == 0) {
+//                focusLast(innerEditText);
+//            }
         }
     }
+
 
     protected void focusNext(EditText et) {
         final int index = mEditTexts.indexOf(et);

@@ -2,41 +2,54 @@ package com.simple.vclayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.text.InputFilter;
 import android.util.AttributeSet;
-import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class VerCodeEditText extends VerCodeLayout {
-
 
     private int mCount;
     private int mMaxLength;
+    /**
+     *
+     */
     private Drawable mNormalBackground;
     private Drawable mFocusedBackground;
-
+    /**
+     *
+     */
     private int mWidth;
     private int mHeight;
-
+    /**
+     *
+     */
     private float mTextSize;
     @ColorInt
     private int mTextColor;
-
+    private Drawable mTextCursorDrawable;
+    /**
+     *
+     */
     private int mMargin;
     private int mMarginLeft;
     private int mMarginTop;
     private int mMarginRight;
     private int mMarginBottom;
+    /**
+     *
+     */
+    private int mPadding;
+    private int mPaddingLeft;
+    private int mPaddingTop;
+    private int mPaddingRight;
+    private int mPaddingBottom;
 
 
     public VerCodeEditText(Context context) {
@@ -54,11 +67,13 @@ public class VerCodeEditText extends VerCodeLayout {
 
         mCount = ta.getInt(R.styleable.VerCodeEditText_vcCount, 0);
         mMaxLength = ta.getInt(R.styleable.VerCodeEditText_vcMaxLength, 1);
-//        mBackground = ta.getDrawable(R.styleable.VerCodeEditText_vcBackground);
+
         mNormalBackground = ta.getDrawable(R.styleable.VerCodeEditText_vcNormalBackground);
         mFocusedBackground = ta.getDrawable(R.styleable.VerCodeEditText_vcFocusedBackground);
 
-        mTextSize = ta.getDimension(R.styleable.VerCodeEditText_vcTextSize, 0f);
+        mTextSize = ta.getDimensionPixelSize(R.styleable.VerCodeEditText_vcTextSize, 0);
+        mTextColor = ta.getColor(R.styleable.VerCodeEditText_vcTextColor, Color.BLACK);
+
         mWidth = (int) ta.getDimension(R.styleable.VerCodeEditText_vcEtWidth, 0f);
         mHeight = (int) ta.getDimension(R.styleable.VerCodeEditText_vcEtHeight, 0f);
 
@@ -74,68 +89,77 @@ public class VerCodeEditText extends VerCodeLayout {
 
     @Override
     protected void onFinishInflate() {
-        createEditTexts(mCount, mMaxLength);
+        createEditTexts();
         super.onFinishInflate();
     }
 
-    private void createEditTexts(int count, final int maxLength) {
-        for (int i = 0; i < count; i++) {
-            final EditText editText = new EditText(getContext());
-            editText.setMaxLines(1);
-            //textSize
-//            if (mTextSize != 0) {
-//            editText.setTextSize(20);
-//            }
-            editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
-            editText.setGravity(Gravity.CENTER);
-            //margin
-            MarginLayoutParams params = new MarginLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
-            if (mMargin != 0) {
-                params.leftMargin = mMargin;
-                params.topMargin = mMargin;
-                params.rightMargin = mMargin;
-                params.bottomMargin = mMargin;
-            } else {
-                params.leftMargin = mMarginLeft;
-                params.topMargin = mMarginTop;
-                params.rightMargin = mMarginRight;
-                params.bottomMargin = mMarginBottom;
-            }
-            if (mWidth != 0) {
-                params.width = mWidth;
-            }
-            if (mHeight != 0) {
-                params.height = mHeight;
-            }
-            //background
-            editText.setOnFocusChangeListener(new OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    Drawable d = hasFocus ? mFocusedBackground : mNormalBackground;
-                    if (d == null) return;
-                    v.setBackgroundDrawable(d);
-                }
-            });
-            if (mNormalBackground != null) {
-                editText.setBackgroundDrawable(mNormalBackground);
-            }
+    private void createEditTexts() {
+        if (mCount <= 0) return;
+
+        EditText editText;
+        for (int i = 0; i < mCount; i++) {
+            editText = new EditText(getContext());
             //
-            editText.setOnKeyListener(new OnKeyListener() {
-                @Override
-                public boolean onKey(View v, int keyCode, KeyEvent event) {
-                    if (editText.getText().length() == maxLength && keyCode != KeyEvent.KEYCODE_DEL){
-                        focusNext(editText);
-                    }else if (editText.getText().length() == 0 && keyCode == KeyEvent.KEYCODE_DEL){
-                        focusLast(editText);
-                    }
-                    return false;
-                }
-            });
+            setDefault(editText);
+            //margin
+            MarginLayoutParams params = getMarginLayoutParams();
+            //background
+            setBackground(editText);
             //padding
-//            editText.setPadding();
+            setPadding(editText);
             //addView
             this.addView(editText, i, params);
         }
+    }
+
+    private void setDefault(EditText editText) {
+        editText.setMaxLines(1);
+        if (mTextSize != 0) {
+            editText.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize);
+        }
+        editText.setTextColor(mTextColor);
+        editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(mMaxLength)});
+        editText.setGravity(Gravity.CENTER);
+    }
+
+    private void setBackground(EditText editText) {
+        editText.setOnFocusChangeListener(new OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                Drawable d = hasFocus ? mFocusedBackground : mNormalBackground;
+                if (d == null) return;
+                v.setBackgroundDrawable(d);
+            }
+        });
+        if (mNormalBackground != null) {
+            editText.setBackgroundDrawable(mNormalBackground);
+        }
+    }
+
+    private void setPadding(EditText editText) {
+        editText.setPadding(0, 0, 0, 0);
+    }
+
+    private MarginLayoutParams getMarginLayoutParams() {
+        MarginLayoutParams params = new MarginLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        if (mMargin != 0) {
+            params.leftMargin = mMargin;
+            params.topMargin = mMargin;
+            params.rightMargin = mMargin;
+            params.bottomMargin = mMargin;
+        } else {
+            params.leftMargin = mMarginLeft;
+            params.topMargin = mMarginTop;
+            params.rightMargin = mMarginRight;
+            params.bottomMargin = mMarginBottom;
+        }
+        if (mWidth != 0) {
+            params.width = mWidth;
+        }
+        if (mHeight != 0) {
+            params.height = mHeight;
+        }
+        return params;
     }
 }

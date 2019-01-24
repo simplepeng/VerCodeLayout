@@ -20,8 +20,8 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@drawable/sr_et_bg_accent"
                 android:gravity="center"
@@ -30,8 +30,8 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="@drawable/sr_et_bg_accent"
                 android:gravity="center"
@@ -71,6 +71,8 @@
             app:vcCount="6"
             app:vcFocusedBackground="@drawable/sp_focused_one"
             app:vcMargin="10dp"
+            app:vcTextColor="@color/colorAccent"
+            app:vcTextSize="20sp"
             app:vcNormalBackground="@drawable/sp_norma_one" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
