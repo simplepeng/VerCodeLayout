@@ -3,8 +3,10 @@ package com.simple.vclayout_demo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.view.View;
 import android.widget.Toast;
 
+import com.simple.vclayout.VerCodeEditText;
 import com.simple.vclayout.VerCodeLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,13 +19,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         vc_layout = findViewById(R.id.vc_layout);
-        vc_layout.setOnInputFinishListener(new VerCodeLayout.OnInputFinishListener() {
+        vc_layout.setOnCompleteListener(new VerCodeLayout.OnCompleteListener() {
             @Override
-            public void onInputFinish(Editable editable, String code) {
+            public void onComplete(Editable editable, String code) {
 //                code = editable.toString();
                 showToast(code);
             }
         });
+
+        VerCodeEditText vcEt1 = findViewById(R.id.vcEditText1);
+        vcEt1.setOnCompleteListener(new VerCodeLayout.OnCompleteListener() {
+            @Override
+            public void onComplete(Editable editable, String code) {
+                showToast(code);
+            }
+        });
+    }
+
+    public void clear(View view) {
+        VerCodeEditText vcEt = findViewById(R.id.vcEditText1);
+        vcEt.clear();
     }
 
     private void showToast(CharSequence text) {

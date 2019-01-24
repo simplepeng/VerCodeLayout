@@ -33,7 +33,7 @@ public class VerCodeEditText extends VerCodeLayout {
     private float mTextSize;
     @ColorInt
     private int mTextColor;
-    private Drawable mTextCursorDrawable;
+    private int mTextCursorDrawable;
     /**
      *
      */
@@ -73,6 +73,7 @@ public class VerCodeEditText extends VerCodeLayout {
 
         mTextSize = ta.getDimensionPixelSize(R.styleable.VerCodeEditText_vcTextSize, 0);
         mTextColor = ta.getColor(R.styleable.VerCodeEditText_vcTextColor, Color.BLACK);
+        mTextCursorDrawable = ta.getResourceId(R.styleable.VerCodeEditText_vcTextCursorDrawable, -1);
 
         mWidth = (int) ta.getDimension(R.styleable.VerCodeEditText_vcEtWidth, 0f);
         mHeight = (int) ta.getDimension(R.styleable.VerCodeEditText_vcEtHeight, 0f);
@@ -118,6 +119,7 @@ public class VerCodeEditText extends VerCodeLayout {
             editText.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize);
         }
         editText.setTextColor(mTextColor);
+        Utils.setTextCursorDrawable(editText, mTextCursorDrawable);
         editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(mMaxLength)});
         editText.setGravity(Gravity.CENTER);
     }

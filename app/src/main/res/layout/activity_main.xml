@@ -14,6 +14,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <com.simple.vclayout.VerCodeEditText
+            android:id="@+id/vcEditText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:vcCount="6"
+            app:vcFocusedBackground="@drawable/sp_focused_one"
+            app:vcMargin="10dp"
+            app:vcNormalBackground="@drawable/sp_norma_one"
+            app:vcTextColor="@color/colorAccent"
+            app:vcTextCursorDrawable="@drawable/sp_cursor"
+            app:vcTextSize="20sp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="clear"
+            android:text="clear" />
+
+
         <com.simple.vclayout.VerCodeLayout
             android:id="@+id/vc_layout"
             android:layout_width="wrap_content"
@@ -64,15 +83,6 @@
 
         </com.simple.vclayout.VerCodeLayout>
 
-        <com.simple.vclayout.VerCodeEditText
-            android:id="@+id/vcEditText1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:vcCount="6"
-            app:vcFocusedBackground="@drawable/sp_focused_one"
-            app:vcMargin="10dp"
-            app:vcTextColor="@color/colorAccent"
-            app:vcTextSize="20sp"
-            app:vcNormalBackground="@drawable/sp_norma_one" />
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

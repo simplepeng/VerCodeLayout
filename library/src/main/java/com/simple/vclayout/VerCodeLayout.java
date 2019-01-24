@@ -1,9 +1,7 @@
 package com.simple.vclayout;
 
 import android.content.Context;
-import android.os.Build;
 import android.text.Editable;
-import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -11,7 +9,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +17,7 @@ public class VerCodeLayout extends LinearLayout {
     public static final String TAG = "VerCodeLayout";
 
     protected List<EditText> mEditTexts;
-    private OnInputFinishListener mOnInputFinishListener;
+    private OnCompleteListener mOnCompleteListener;
 
     public VerCodeLayout(Context context) {
         this(context, null);
@@ -118,13 +115,12 @@ public class VerCodeLayout extends LinearLayout {
             EditText nextEt = mEditTexts.get(index + 1);
             nextEt.requestFocus();
         } else {
-            //onFinish
-            if (mOnInputFinishListener != null) {
+            if (mOnCompleteListener != null) {
                 Editable editable = Editable.Factory.getInstance().newEditable("");
                 for (EditText editText : mEditTexts) {
                     editable.append(editText.getText());
                 }
-                mOnInputFinishListener.onInputFinish(editable, editable.toString());
+                mOnCompleteListener.onComplete(editable, editable.toString());
             }
         }
     }
@@ -137,12 +133,25 @@ public class VerCodeLayout extends LinearLayout {
         }
     }
 
-    public void setOnInputFinishListener(OnInputFinishListener listener) {
-        this.mOnInputFinishListener = listener;
+    public void clear() {
+        if (mEditTexts.isEmpty()) return;
+        for (EditText editText : mEditTexts) {
+            editText.setText("");
+            editText.clearFocus();
+        }
+        EditText first = mEditTexts.get(0);
+        if (first != null) {
+            first.requestFocus();
+        }
+
     }
 
-    public interface OnInputFinishListener {
-        void onInputFinish(Editable editable, String code);
+    public void setOnCompleteListener(OnCompleteListener listener) {
+        this.mOnCompleteListener = listener;
+    }
+
+    public interface OnCompleteListener {
+        void onComplete(Editable editable, String code);
     }
 
 }
