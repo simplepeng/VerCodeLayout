@@ -23,7 +23,6 @@
             app:vcMargin="10dp"
             app:vcNormalBackground="@drawable/sp_norma_one"
             app:vcTextColor="@color/colorAccent"
-            app:vcTextCursorDrawable="@drawable/sp_cursor"
             app:vcTextSize="20sp" />
 
         <Button
