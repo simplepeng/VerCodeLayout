@@ -1,6 +1,6 @@
 # VerCodeLayout
 
-![](https://simple-bucket-1257044365.cos.ap-chongqing.myqcloud.com/vercode.gif)
+
 
 ## 引入依赖
 
