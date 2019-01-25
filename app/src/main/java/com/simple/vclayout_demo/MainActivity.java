@@ -16,9 +16,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        VerCodeEditText vcEt1 = findViewById(R.id.vcEt1);
+        vcEt1.setOnCompleteListener(new VerCodeLayout.OnCompleteListener() {
+            @Override
+            public void onComplete(Editable editable, String code) {
+                showToast(code);
+            }
+        });
     }
 
     public void clear(View view) {
+        VerCodeEditText vcEt1 = findViewById(R.id.vcEt1);
+        vcEt1.clear();
     }
 
     private void showToast(CharSequence text) {

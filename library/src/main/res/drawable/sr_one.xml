@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/sp_normal_one" android:state_focused="false" />
+    <item android:drawable="@drawable/sp_focused_one" android:state_focused="true" />
+</selector>
