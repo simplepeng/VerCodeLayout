@@ -7,6 +7,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -38,6 +39,7 @@ public class VerCodeEditText extends VerCodeLayout {
     private int mTextColor;
     private int mTextCursorDrawable;
     private int mGravity;
+    private int mInputType;
     /**
      *
      */
@@ -79,6 +81,7 @@ public class VerCodeEditText extends VerCodeLayout {
         mTextColor = ta.getColor(R.styleable.VerCodeEditText_vcTextColor, Color.BLACK);
         mTextCursorDrawable = ta.getResourceId(R.styleable.VerCodeEditText_vcTextCursorDrawable, -1);
         mGravity = ta.getInt(R.styleable.VerCodeEditText_vcGravity, Gravity.CENTER);
+        mInputType = ta.getInt(R.styleable.VerCodeEditText_vcInputType, InputType.TYPE_CLASS_NUMBER);
         //
         mWidth = (int) ta.getDimension(R.styleable.VerCodeEditText_vcWidth, 0f);
         mHeight = (int) ta.getDimension(R.styleable.VerCodeEditText_vcHeight, 0f);
@@ -135,6 +138,7 @@ public class VerCodeEditText extends VerCodeLayout {
         editText.setMinWidth(mMinWidth);
         editText.setMinHeight(mMinHeight);
         editText.setGravity(mGravity);
+        editText.setInputType(mInputType);
     }
 
     private void setBackground(EditText editText) {

@@ -52,6 +52,7 @@
             app:vcMargin="5dp"
             app:vcMaxLength="3"
             app:vcMinWidth="80dp"
+            app:vcInputType="numberPassword"
             app:vcNormalBackground="@drawable/sp_normal_one"
             app:vcTextSize="20sp" />
 
