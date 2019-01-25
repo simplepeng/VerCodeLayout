@@ -146,6 +146,10 @@ public class VerCodeLayout extends LinearLayout {
 
     }
 
+    public List<EditText> getEditTexts(){
+        return mEditTexts;
+    }
+
     public void setOnCompleteListener(OnCompleteListener listener) {
         this.mOnCompleteListener = listener;
     }
