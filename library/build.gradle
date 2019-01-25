@@ -1,9 +1,17 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+publish {
+    userOrg = 'simplepeng'
+    groupId = 'com.simple'
+    artifactId = 'VerCodeLayout'
+    publishVersion = '1.0.0'
+    desc = 'A handy code input layout'
+    website = 'https://github.com/simplepeng/VerCodeLayout'
+}
 
 android {
     compileSdkVersion 28
-
-
 
     defaultConfig {
         minSdkVersion 15
