@@ -28,8 +28,10 @@ public class VerCodeEditText extends VerCodeLayout {
      */
     private int mWidth;
     private int mHeight;
+    private int mMinWidth;
+    private int mMinHeight;
     /**
-     *
+     * set
      */
     private float mTextSize;
     @ColorInt
@@ -65,10 +67,10 @@ public class VerCodeEditText extends VerCodeLayout {
         super(context, attrs, defStyleAttr);
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.VerCodeEditText);
-
+        //
         mCount = ta.getInt(R.styleable.VerCodeEditText_vcCount, 0);
         mMaxLength = ta.getInt(R.styleable.VerCodeEditText_vcMaxLength, 1);
-
+        //
         mNormalBackground = ta.getDrawable(R.styleable.VerCodeEditText_vcNormalBackground);
         mFocusedBackground = ta.getDrawable(R.styleable.VerCodeEditText_vcFocusedBackground);
         //
@@ -76,8 +78,10 @@ public class VerCodeEditText extends VerCodeLayout {
         mTextColor = ta.getColor(R.styleable.VerCodeEditText_vcTextColor, Color.BLACK);
         mTextCursorDrawable = ta.getResourceId(R.styleable.VerCodeEditText_vcTextCursorDrawable, -1);
         //
-        mWidth = (int) ta.getDimension(R.styleable.VerCodeEditText_vcEtWidth, 0f);
-        mHeight = (int) ta.getDimension(R.styleable.VerCodeEditText_vcEtHeight, 0f);
+        mWidth = (int) ta.getDimension(R.styleable.VerCodeEditText_vcWidth, 0f);
+        mHeight = (int) ta.getDimension(R.styleable.VerCodeEditText_vcHeight, 0f);
+        mMinWidth = ta.getDimensionPixelSize(R.styleable.VerCodeEditText_vcMinWidth, 0);
+        mMinHeight = ta.getDimensionPixelSize(R.styleable.VerCodeEditText_vcMinHeight, 0);
         //
         mMargin = (int) ta.getDimension(R.styleable.VerCodeEditText_vcMargin, 0);
         mMarginLeft = (int) ta.getDimension(R.styleable.VerCodeEditText_vcMarginLeft, 0);
@@ -86,10 +90,10 @@ public class VerCodeEditText extends VerCodeLayout {
         mMarginBottom = (int) ta.getDimension(R.styleable.VerCodeEditText_vcMarginBottom, 0);
         //
         mPadding = (int) ta.getDimension(R.styleable.VerCodeEditText_vcPadding, -1);
-        mPaddingLeft = (int) ta.getDimension(R.styleable.VerCodeEditText_vcPaddingLeft, 0);
-        mPaddingTop = (int) ta.getDimension(R.styleable.VerCodeEditText_vcPaddingTop, 0);
-        mPaddingRight = (int) ta.getDimension(R.styleable.VerCodeEditText_vcPaddingRight, 0);
-        mPaddingBottom = (int) ta.getDimension(R.styleable.VerCodeEditText_vcPaddingBottom, 0);
+        mPaddingLeft = (int) ta.getDimension(R.styleable.VerCodeEditText_vcPaddingLeft, -1);
+        mPaddingTop = (int) ta.getDimension(R.styleable.VerCodeEditText_vcPaddingTop, -1);
+        mPaddingRight = (int) ta.getDimension(R.styleable.VerCodeEditText_vcPaddingRight, -1);
+        mPaddingBottom = (int) ta.getDimension(R.styleable.VerCodeEditText_vcPaddingBottom, -1);
 
         ta.recycle();
 
@@ -126,6 +130,8 @@ public class VerCodeEditText extends VerCodeLayout {
         }
         editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(mMaxLength)});
         editText.setGravity(Gravity.CENTER);
+        editText.setMinWidth(mMinWidth);
+        editText.setMinHeight(mMinHeight);
     }
 
     private void setBackground(EditText editText) {
@@ -150,7 +156,11 @@ public class VerCodeEditText extends VerCodeLayout {
                 Drawable d = editText.getBackground();
                 Rect r = new Rect();
                 d.getPadding(r);
-                editText.setPadding(r.left, r.top, r.right, r.bottom);
+                int left = mPaddingLeft != -1 ? mPaddingLeft : r.left;
+                int top = mPaddingTop != -1 ? mPaddingTop : r.top;
+                int right = mPaddingRight != -1 ? mPaddingRight : r.right;
+                int bottom = mPaddingBottom != -1 ? mPaddingBottom : r.bottom;
+                editText.setPadding(left, top, right, bottom);
             } else {
                 editText.setPadding(mPaddingLeft, mPaddingTop, mPaddingRight, mPaddingBottom);
             }

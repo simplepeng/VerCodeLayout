@@ -43,5 +43,17 @@
             app:vcNormalBackground="@drawable/sp_normal_two"
             app:vcTextSize="20sp" />
 
+        <com.simple.vclayout.VerCodeEditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:vcCount="4"
+            app:vcFocusedBackground="@drawable/sp_focused_one"
+            app:vcMargin="5dp"
+            app:vcMaxLength="3"
+            app:vcMinWidth="80dp"
+            app:vcNormalBackground="@drawable/sp_normal_one"
+            app:vcTextSize="20sp" />
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

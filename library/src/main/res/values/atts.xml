@@ -7,8 +7,10 @@
         <attr name="vcNormalBackground" format="reference" />
         <attr name="vcFocusedBackground" format="reference" />
         <!---->
-        <attr name="vcEtWidth" format="dimension" />
-        <attr name="vcEtHeight" format="dimension" />
+        <attr name="vcWidth" format="dimension" />
+        <attr name="vcHeight" format="dimension" />
+        <attr name="vcMinWidth" format="dimension" />
+        <attr name="vcMinHeight" format="dimension" />
         <!---->
         <attr name="vcMargin" format="dimension" />
         <attr name="vcMarginLeft" format="dimension" />
