@@ -1,5 +1,7 @@
 # VerCodeLayout
 
+[![](https://jitpack.io/v/simplepeng/VerCodeLayout.svg)](https://jitpack.io/#simplepeng/VerCodeLayout)
+
 可能是支持属性最多的类似验证码输入控件了。
 
 ![](https://raw.githubusercontent.com/simplepeng/VerCodeLayout/master/statics/vercode.gif)
@@ -7,7 +9,11 @@
 ## 引入依赖
 
 ```groovy
-implementation 'com.simple:VerCodeLayout:1.0.0'
+maven { url 'https://jitpack.io' }
+```
+
+```groovy
+implementation 'com.github.simplepeng:VerCodeLayout:v1.0.1'
 ```
 
 ## 基本使用
