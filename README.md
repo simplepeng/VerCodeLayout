@@ -125,6 +125,6 @@ implementation 'com.github.simplepeng:VerCodeLayout:v1.0.1'
 
 ## 版本更新
 
-* v1.0.1：迁移到`jitpack`
+* v1.0.1：迁移到`jitpack`，`AndroidX`
 
 * v1.0.0： 首次上传
