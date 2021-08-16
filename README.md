@@ -114,9 +114,11 @@ implementation 'com.simple:VerCodeLayout:1.0.0'
 ## 混淆
 
 ```shell
--keep com.simple.vclayout.* {*;}
+-keep class com.simple.vclayout.** {*;}
 ```
 
 ## 版本更新
 
-* 1.0.0 首次上传
+* v1.0.1：迁移到`jitpack`
+
+* v1.0.0： 首次上传

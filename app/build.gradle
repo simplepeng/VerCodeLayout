@@ -8,10 +8,10 @@ android {
         minSdkVersion 15
         targetSdkVersion 30
     }
-    
+
     buildTypes {
-        release {
-            minifyEnabled false
+        debug {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
