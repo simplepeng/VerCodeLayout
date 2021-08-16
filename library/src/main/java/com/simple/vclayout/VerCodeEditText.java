@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorInt;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.util.AttributeSet;
@@ -14,6 +13,8 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+
+import androidx.annotation.ColorInt;
 
 public class VerCodeEditText extends VerCodeLayout {
 

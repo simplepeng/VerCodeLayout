@@ -1,6 +1,6 @@
 # VerCodeLayout
 
-可能是支持属性最多的类似验证码的输入控件了。
+可能是支持属性最多的类似验证码输入控件了。
 
 ![](https://raw.githubusercontent.com/simplepeng/VerCodeLayout/master/statics/vercode.gif)
 
@@ -110,6 +110,12 @@ implementation 'com.simple:VerCodeLayout:1.0.0'
 | setOnCompleteListener | 监听输入完成       |
 | clear                 | 清除所有的输入     |
 | getEditTexts          | 获取所有的EditText |
+
+## 混淆
+
+```shell
+-keep com.simple.vclayout.* {*;}
+```
 
 ## 版本更新
 
