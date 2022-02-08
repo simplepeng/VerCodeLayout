@@ -2,9 +2,9 @@
 
 [![](https://jitpack.io/v/simplepeng/VerCodeLayout.svg)](https://jitpack.io/#simplepeng/VerCodeLayout)
 
-可能是支持属性最多的类似验证码输入控件了。
+可能是支持属性最多类似校验验证码的输入控件。
 
-![](https://raw.githubusercontent.com/simplepeng/VerCodeLayout/master/statics/vercode.gif)
+![](statics/vercode.gif)
 
 ## 引入依赖
 
@@ -13,7 +13,7 @@ maven { url 'https://jitpack.io' }
 ```
 
 ```groovy
-implementation 'com.github.simplepeng:VerCodeLayout:v1.0.1'
+implementation 'com.github.simplepeng:VerCodeLayout:v1.0.2'
 ```
 
 ## 基本使用
@@ -124,6 +124,8 @@ implementation 'com.github.simplepeng:VerCodeLayout:v1.0.1'
 ```
 
 ## 版本更新
+
+* v1.0.2：增加`autoFocus`的支持
 
 * v1.0.1：迁移到`jitpack`，`AndroidX`
 
