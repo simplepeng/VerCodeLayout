@@ -18,7 +18,9 @@ import androidx.annotation.ColorInt;
 
 public class VerCodeEditText extends VerCodeLayout {
 
+    //输入框的总数
     private int mCount;
+    //最大输入长度
     private int mMaxLength;
     /**
      *
@@ -106,12 +108,16 @@ public class VerCodeEditText extends VerCodeLayout {
         createEditTexts();
     }
 
+    //创建EditText们
     private void createEditTexts() {
         if (mCount <= 0) return;
 
         EditText editText;
         for (int i = 0; i < mCount; i++) {
             editText = new EditText(getContext());
+            //
+            if (i == 0 && enterFocus) editText.requestFocus();
+//            if (i > 0) editText.setEnabled(clickable);
             //
             setDefault(editText);
             //margin
@@ -125,6 +131,7 @@ public class VerCodeEditText extends VerCodeLayout {
         }
     }
 
+    //设置默认的属性
     private void setDefault(EditText editText) {
         editText.setMaxLines(1);
         if (mTextSize != 0) {

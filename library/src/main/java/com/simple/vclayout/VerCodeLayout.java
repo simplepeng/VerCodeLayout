@@ -19,6 +19,12 @@ public class VerCodeLayout extends LinearLayout {
     protected List<EditText> mEditTexts;
     private OnCompleteListener mOnCompleteListener;
 
+    //
+    protected boolean clickable = false;
+
+    //
+    protected boolean enterFocus = false;
+
     public VerCodeLayout(Context context) {
         this(context, null);
     }
@@ -48,12 +54,14 @@ public class VerCodeLayout extends LinearLayout {
         }
     }
 
+    //
     private void setupEditText(EditText editText) {
         mEditTexts.add(editText);
         editText.setOnKeyListener(new InnerKeyListener(editText));
         editText.addTextChangedListener(new InnerTextWatcher(editText));
     }
 
+    //按键监听
     class InnerKeyListener implements OnKeyListener {
 
         EditText innerEditText;
@@ -66,15 +74,20 @@ public class VerCodeLayout extends LinearLayout {
 
         @Override
         public boolean onKey(View v, int keyCode, KeyEvent event) {
-            if (innerEditText.getText().length() == maxLength && keyCode != KeyEvent.KEYCODE_DEL) {
+            if (innerEditText.getText().length() == maxLength
+                    && keyCode != KeyEvent.KEYCODE_DEL
+                    && keyCode != KeyEvent.KEYCODE_HOME
+                    && keyCode != KeyEvent.KEYCODE_BACK) {
                 focusNext(innerEditText);
-            } else if (innerEditText.getText().length() == 0 && keyCode == KeyEvent.KEYCODE_DEL) {
+            } else if (innerEditText.getText().length() == 0
+                    && keyCode == KeyEvent.KEYCODE_DEL) {
                 focusLast(innerEditText);
             }
             return false;
         }
     }
 
+    //输入文本监听
     class InnerTextWatcher implements TextWatcher {
 
         EditText innerEditText;
@@ -102,18 +115,17 @@ public class VerCodeLayout extends LinearLayout {
             if (count >= maxLength) {
                 focusNext(innerEditText);
             }
-//            else if (count == 0) {
-//                focusLast(innerEditText);
-//            }
         }
     }
 
-
+    //移动焦点到下一个输入框
     protected void focusNext(EditText et) {
         final int index = mEditTexts.indexOf(et);
         if (index < mEditTexts.size() - 1) {
             EditText nextEt = mEditTexts.get(index + 1);
+            nextEt.setEnabled(true);
             nextEt.requestFocus();
+//            et.setEnabled(clickable);
         } else {
             if (mOnCompleteListener != null) {
                 Editable editable = Editable.Factory.getInstance().newEditable("");
@@ -125,14 +137,18 @@ public class VerCodeLayout extends LinearLayout {
         }
     }
 
+    //移动焦点到上一个输入框
     protected void focusLast(EditText et) {
         final int index = mEditTexts.indexOf(et);
         if (index != 0) {
             EditText lastEt = mEditTexts.get(index - 1);
+            lastEt.setEnabled(true);
             lastEt.requestFocus();
+//            et.setEnabled(clickable);
         }
     }
 
+    //清除所有文本
     public void clear() {
         if (mEditTexts.isEmpty()) return;
         for (EditText editText : mEditTexts) {
@@ -141,15 +157,17 @@ public class VerCodeLayout extends LinearLayout {
         }
         EditText first = mEditTexts.get(0);
         if (first != null) {
+            first.setEnabled(true);
             first.requestFocus();
         }
-
     }
 
-    public List<EditText> getEditTexts(){
+    //所有的EditText
+    public List<EditText> getEditTexts() {
         return mEditTexts;
     }
 
+    //输入完成监听事件
     public void setOnCompleteListener(OnCompleteListener listener) {
         this.mOnCompleteListener = listener;
     }
