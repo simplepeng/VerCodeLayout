@@ -77,5 +77,7 @@
             <flag name="date" value="0x00000014" />
             <flag name="time" value="0x00000024" />
         </attr>
+        <attr name="vcAutoFocus" format="boolean" />
+        <attr name="vcEnterFocus" format="boolean" />
     </declare-styleable>
 </resources>

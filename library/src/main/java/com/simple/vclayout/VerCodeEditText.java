@@ -102,6 +102,9 @@ public class VerCodeEditText extends VerCodeLayout {
         mPaddingTop = (int) ta.getDimension(R.styleable.VerCodeEditText_vcPaddingTop, -1);
         mPaddingRight = (int) ta.getDimension(R.styleable.VerCodeEditText_vcPaddingRight, -1);
         mPaddingBottom = (int) ta.getDimension(R.styleable.VerCodeEditText_vcPaddingBottom, -1);
+        //
+        autoFocus = ta.getBoolean(R.styleable.VerCodeEditText_vcAutoFocus, true);
+        enterFocus = ta.getBoolean(R.styleable.VerCodeEditText_vcEnterFocus, true);
 
         ta.recycle();
 
