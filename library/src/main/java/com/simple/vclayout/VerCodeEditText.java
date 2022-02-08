@@ -117,7 +117,7 @@ public class VerCodeEditText extends VerCodeLayout {
             editText = new EditText(getContext());
             //
             if (i == 0 && enterFocus) editText.requestFocus();
-//            if (i > 0) editText.setEnabled(clickable);
+            if (i > 0 && autoFocus) editText.setEnabled(false);
             //
             setDefault(editText);
             //margin

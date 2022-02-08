@@ -1,5 +1,6 @@
 package com.simple.vclayout;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 import android.text.InputFilter;
@@ -68,6 +69,7 @@ public class Utils {
         return maxLength;
     }
 
+    @SuppressLint("SoonBlockedPrivateApi")
     public static void setTextCursorDrawable(EditText editText, int resId) {
         try {
             Field f = TextView.class.getDeclaredField("mCursorDrawableRes");
